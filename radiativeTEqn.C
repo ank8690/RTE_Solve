@@ -222,6 +222,7 @@ void radiativeTransferEquation::updateIntensity()
 					if(!pFaces[lFaceIndex_West].m_b_IfBoundary)
 					{
 						pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+						b_West = true;
 					}
 				}
 				// North Face
@@ -230,6 +231,7 @@ void radiativeTransferEquation::updateIntensity()
 					if(!pFaces[lFaceIndex_North].m_b_IfBoundary)
 					{
 						pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+						b_North = true;
 					}
 				}
 				else
@@ -255,6 +257,7 @@ void radiativeTransferEquation::updateIntensity()
 					if(!pFaces[lFaceIndex_South].m_b_IfBoundary)
 					{
 						pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+						b_South = true;
 					}
 				}
 
@@ -271,14 +274,42 @@ void radiativeTransferEquation::updateIntensity()
 				float f_Vol_Cell = pCells[iCellCt].m_f_Vol;
 				float fP_V_Omega = f_Vol_Cell*fOmega; 
 				float f_Source = fP_V_Omega*fAbsCoeff*dSBConst*pow(pCells[iCellCt].m_f_Temp,4)/pi;
-				float f_Num = f_Source +  ( fabs(I_e*A_e*fdp_e) + fabs(I_w*A_w*fdp_w) + 
-											fabs(I_n*A_n*fdp_n) + fabs(I_s*A_s*fdp_s) );
+				float f_Sm = fAbsCoeff*dSBConst*pow(pCells[iCellCt].m_f_Temp,4)/pi;
+
+				// Here I am thinking to change the code as per Pradeep Sir Suggestion
+				// first I need to calculate residual
+				float f_Residual = ( (-fAbsCoeff*f_Ip_Old) + f_Sm)*fP_V_Omega - ( (I_e*A_e*fdp_e) + 																					(I_w*A_w*fdp_w) + 
+															(I_n*A_n*fdp_n) + (I_s*A_s*fdp_s) );
+
+
+				//float f_Num = f_Source +  ( fabs(I_e*A_e*fdp_e) + fabs(I_w*A_w*fdp_w) + 
+				//							fabs(I_n*A_n*fdp_n) + fabs(I_s*A_s*fdp_s) );
 				// Sometimes, this f_Num value is coming negative, do I need to use fabs here?
-				float f_DEN = fAbsCoeff*fP_V_Omega;
+				//float f_DEN = fAbsCoeff*fP_V_Omega;
+				// Now, I need to calculate a_p, the coefficient of I_p
+				float f_a_P = fAbsCoeff*fP_V_Omega;
+				if(b_East)
+				{
+					f_a_P += A_e*fdp_e;
+				}
+				if(b_West)
+				{
+					f_a_P += A_w*fdp_w;
+				}
+				if(b_North)
+				{
+					f_a_P += A_n*fdp_n;
+				}
+				if(b_South)
+				{
+					f_a_P += A_s*fdp_s;
+				}
+				float f_w = 1.0; // relaxation factor
 				
-				f_Sum_Old += f_Ip_Old;
-				float f_Ip_New = f_Num/(f_DEN + f_SMALL);
-				f_Sum_New += f_Ip_New;
+				float f_Ip_New = f_Ip_Old + f_w*(f_Residual/f_a_P);
+				//f_Sum_Old += f_Ip_Old;
+				//float f_Ip_New = f_Num/(f_DEN + f_SMALL);
+				//f_Sum_New += f_Ip_New;
 				pCells[iCellCt].m_d_vec_cell_ray_Inten[iRayCt] = f_Ip_New;
 				float f_diff = fabs(f_Ip_New - f_Ip_Old)/(f_Ip_New + f_SMALL);
 				f_DMAX = max(f_DMAX,f_diff);
@@ -1827,8 +1858,8 @@ void radiativeTransferEquation::constructGridUsingCellAndFaces(long l_nbRays, Fa
 			pCells[l_CellCount].m_d_vec_cell_ray_Inten.resize(l_nbRays);
 			for(l_RayCt = 0; l_RayCt < l_nbRays; ++l_RayCt)
 			{
-				//pCells[l_CellCount].m_d_vec_cell_ray_Inten[l_RayCt] = dSBConst*pow(fTemp,4)/pi;
-				pCells[l_CellCount].m_d_vec_cell_ray_Inten[l_RayCt] = 0.0;
+				pCells[l_CellCount].m_d_vec_cell_ray_Inten[l_RayCt] = dSBConst*pow(fTemp,4)/pi;
+				//pCells[l_CellCount].m_d_vec_cell_ray_Inten[l_RayCt] = 0.0;
 			}
 			pCells[l_CellCount].m_f_Vol = ((1/(float)ni)*(1/(float)nj));
 			pCells[l_CellCount].m_f_Temp = fTemp;
