@@ -1,0 +1,18 @@
+7. Logical expressions
+Logical expressions can only have the value .TRUE. or .FALSE.. A logical expression can be formed by comparing arithmetic expressions using the following relational operators:
+      .LT.  meaning <
+      .LE.          <=
+      .GT.          >
+      .GE.          >=
+      .EQ.          =
+      .NE.          /=
+So you cannot use symbols like < or = for comparison in Fortran 77, but you have to use the correct two-letter abbreviation enclosed by dots! (Such symbols are allowed in Fortran 90, though.)
+Logical expressions can be combined by the logical operators .AND. .OR. .NOT. which have the obvious meaning.
+
+Logical variables and assignment
+Truth values can be stored in logical variables. The assignment is analagous to the arithmetic assignment. Example:
+      logical a, b
+      a = .TRUE.
+      b = a .AND. 3 .LT. 5/2
+The order of precedence is important, as the last example shows. The rule is that arithmetic expressions are evaluated first, then relational operators, and finally logical operators. Hence b will be assigned .FALSE. in the example above.
+Logical variables are seldom used in Fortran. But logical expressions are frequently used in conditional statements like the if statement.
