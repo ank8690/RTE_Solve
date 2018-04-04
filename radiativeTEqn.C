@@ -196,96 +196,124 @@ void radiativeTransferEquation::updateIntensity()
 				// Apply Boundary condition first
 					
 				// Start from the east face
-				if(fdp_e > 0)
+				if(pFaces[lFaceIndex_East].m_b_IfBoundary)
 				{
-					//if(!pFaces[lFaceIndex_East].m_b_IfBoundary)
-					//{
-						pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
-						b_East = true;
-					//}
+					pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iRayCt] = 0.0;
 				}
 				else
 				{
-					// otherwise find the cell east to the face of the current cell;
-					if(l_Cell_East != -1)
+					if(fdp_e > 0)
 					{
-						pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iRayCt] = 
-													pCells[l_Cell_East].m_d_vec_cell_ray_Inten[iRayCt];
+						//if(!pFaces[lFaceIndex_East].m_b_IfBoundary)
+						//{
+						pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+						b_East = true;
+						//}
 					}
 					else
 					{
-						pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
-						b_East = true;
+						// otherwise find the cell east to the face of the current cell;
+						if(l_Cell_East != -1)
+						{
+							pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iRayCt] = 
+													pCells[l_Cell_East].m_d_vec_cell_ray_Inten[iRayCt];
+						}
+						/*else
+						{
+							pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+							b_East = true;
+						}*/
 					}
 					// Also, we need to use the emissivity boundary condition
 					
 				}
 				// Now , west face
-				if(fdp_w > 0)
-				{	
-					if(l_Cell_West != -1)
-					{
-						pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt] = 
-													pCells[l_Cell_West].m_d_vec_cell_ray_Inten[iRayCt];
-					}
-					else
-					{
-						pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
-						b_West = true;
-					}
+				if(pFaces[lFaceIndex_West].m_b_IfBoundary)
+				{
+					pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt] = 0.0;
 				}
 				else
 				{
-					//if(!pFaces[lFaceIndex_West].m_b_IfBoundary)
-					//{
-						pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
-						b_West = true;
-					//}
+					if(fdp_w > 0)
+					{	
+						if(l_Cell_West != -1)
+						{
+							pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt] = 
+													pCells[l_Cell_West].m_d_vec_cell_ray_Inten[iRayCt];
+						}
+						/*else
+						{
+							pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+							b_West = true;
+						}*/
+					}
+					else
+					{
+						//if(!pFaces[lFaceIndex_West].m_b_IfBoundary)
+						//{
+							pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+							b_West = true;
+						//}
+					}
 				}
 				// North Face
-				if(fdp_n > 0)
+				if(pFaces[lFaceIndex_North].m_b_IfBoundary)
 				{
-					/*if(!pFaces[lFaceIndex_North].m_b_IfBoundary)
-					{*/
-						pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
-						b_North = true;
-					//}
+					pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt] = 0.0;
 				}
 				else
 				{
-					// otherwise find the cell east to the face of the current cell;
-					if(l_Cell_North != -1)
+					if(fdp_n > 0)
 					{
-						pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt] = 
-													pCells[l_Cell_North].m_d_vec_cell_ray_Inten[iRayCt];
+						/*if(!pFaces[lFaceIndex_North].m_b_IfBoundary)
+						{*/
+							pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+							b_North = true;
+						//}
 					}
 					else
 					{
-						pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
-						b_North = true;
+						// otherwise find the cell east to the face of the current cell;
+						if(l_Cell_North != -1)
+						{
+							pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt] = 
+													pCells[l_Cell_North].m_d_vec_cell_ray_Inten[iRayCt];
+						}
+						/*else
+						{
+							pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+							b_North = true;
+						}*/
 					}
 				}
 				// Now , south face
-				if(fdp_s > 0)
-				{	
-					if(l_Cell_South != -1)
-					{
-						pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = 
-												pCells[l_Cell_South].m_d_vec_cell_ray_Inten[iRayCt];
-					}
-					else
-					{
-						pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
-						b_South = true;
-					}
+				if(pFaces[lFaceIndex_South].m_b_IfBoundary)
+				{
+					pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = 0.0;
 				}
 				else
 				{
-					/*if(!pFaces[lFaceIndex_South].m_b_IfBoundary)
-					{*/
-						pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
-						b_South = true;
-					//}
+					if(fdp_s > 0)
+					{	
+						if(l_Cell_South != -1)
+						{
+							pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = 
+													pCells[l_Cell_South].m_d_vec_cell_ray_Inten[iRayCt];
+						}
+						/*else
+						{
+							pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+							b_South = true;
+						}*/
+					}
+					else
+					{
+						/*if(!pFaces[lFaceIndex_South].m_b_IfBoundary)
+						{*/
+							pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+							b_South = true;
+						//}
+					}
 				}
 
 				// After assigning the intensities on the faces , now we can write the general equation to 							find the intensity on the current cell
@@ -300,42 +328,79 @@ void radiativeTransferEquation::updateIntensity()
 				
 				float f_Vol_Cell = pCells[iCellCt].m_f_Vol;
 				float fP_V_Omega = f_Vol_Cell*fOmega; 
-				//float f_Source = fP_V_Omega*fAbsCoeff*dSBConst*pow(pCells[iCellCt].m_f_Temp,4)/pi;
+				float f_Source = fP_V_Omega*fAbsCoeff*dSBConst*pow(pCells[iCellCt].m_f_Temp,4)/pi;
 				float f_Sm = fAbsCoeff*dSBConst*pow(pCells[iCellCt].m_f_Temp,4)/pi;
-
+				float f_Residual = 0.0; 
 				// Here I am thinking to change the code as per Pradeep Sir Suggestion
 				// first I need to calculate residual
-				float f_Residual = ( (-fAbsCoeff*f_Ip_Old) + f_Sm)*fP_V_Omega - ( (I_e*A_e*fabs(fdp_e)) + 																					(I_w*A_w*fabs(fdp_w)) + 
-															(I_n*A_n*fabs(fdp_n)) + (I_s*A_s*fabs(fdp_s)) );
+				//float f_Residual = ( (-fAbsCoeff*f_Ip_Old) + f_Sm)*fP_V_Omega - ( (I_e*A_e*fabs(fdp_e)) + 																					(I_w*A_w*fabs(fdp_w)) + 
+					//									(I_n*A_n*fabs(fdp_n)) + (I_s*A_s*fabs(fdp_s)) );
+				//float f_Residual = ( (-fAbsCoeff*f_Ip_Old) + f_Sm)*fP_V_Omega - ( (I_e*A_e*fdp_e) + 																					(I_w*A_w*fdp_w) + 
+					//								(I_n*A_n*fdp_n) + (I_s*A_s*fdp_s) );
 
-				vec_fResiduals.push_back(f_Residual);
+				// If I use the fabs, then values are coming right, otherwise it is giving the same intensity
+				//vec_fResiduals.push_back(f_Residual);
 				//float f_Num = f_Source +  ( fabs(I_e*A_e*fdp_e) + fabs(I_w*A_w*fdp_w) + 
 				//							fabs(I_n*A_n*fdp_n) + fabs(I_s*A_s*fdp_s) );
 				// Sometimes, this f_Num value is coming negative, do I need to use fabs here?
 				//float f_DEN = fAbsCoeff*fP_V_Omega;
 				// Now, I need to calculate a_p, the coefficient of I_p
 				float f_a_P = fAbsCoeff*fP_V_Omega;
+				float f_a_e = 0.0;
+				float f_a_w = 0.0;
+				float f_a_n = 0.0;
+				float f_a_s = 0.0;
 				if(b_East)
 				{
-					f_a_P += A_e*fabs(fdp_e);
+					//f_a_e = A_e*(fdp_e);
+					f_a_e = A_e*fabs(fdp_e);
+					f_a_P += f_a_e;
+					//f_a_P += A_e*(fdp_e);
 				}
 				if(b_West)
 				{
-					f_a_P += A_w*fabs(fdp_w);
+					//f_a_w = A_w*(fdp_w);
+					f_a_w = A_w*fabs(fdp_w);
+					f_a_P += f_a_w;
+					//f_a_P += A_w*(fdp_w);
 				}
 				if(b_North)
 				{
-					f_a_P += A_n*fabs(fdp_n);
+					//f_a_n = A_n*(fdp_n);
+					f_a_n = A_n*fabs(fdp_n);
+					f_a_P += f_a_n;
+					//f_a_P += A_n*(fdp_n);
 				}
 				if(b_South)
 				{
-					f_a_P += A_s*fabs(fdp_s);
+					//f_a_s = A_s*(fdp_s);
+					f_a_s = A_s*fabs(fdp_s);
+					f_a_P += f_a_s;
+					//f_a_P += A_s*(fdp_s);
 				}
+				// Let's check scarborough criterion according to Chanakya's suggestion
+				float f_sum_a_nb = f_a_e + f_a_w + f_a_n + f_a_s;
+				/*if(f_sum_a_nb > 0.0)
+				{
+					f_Residual = ( (-fAbsCoeff*f_Ip_Old) + f_Sm)*fP_V_Omega - ( (I_e*A_e*fdp_e) + 																					(I_w*A_w*fdp_w) + 
+																(I_n*A_n*fdp_n) + (I_s*A_s*fdp_s) );
+				}
+				else
+				{
+					f_Residual = ( (-fAbsCoeff*f_Ip_Old) + f_Sm)*fP_V_Omega - ( (I_e*A_e*fabs(fdp_e)) + 																				(I_w*A_w*fabs(fdp_w)) + 
+														(I_n*A_n*fabs(fdp_n)) + (I_s*A_s*fabs(fdp_s)) );
+				}*/
+				if(f_sum_a_nb/f_a_P > 1)
+				{
+					printf("Scarborough criterion is not satisfied for the cell No. : %d",iCellCt);
+					continue;
+				}
+				//float f_Num = f_Source;
 				//printf("Iteration No. : %d, ray ID :%d,iCellCt = %d, a_P = %lf\n",
 				//						iNbIterations,iRayCt,iCellCt,f_a_P);
 				float f_w = 1.0; // relaxation factor
-				
-				float f_Ip_New = f_Ip_Old + f_w*(f_Residual/f_a_P);
+				float f_Ip_New = f_Source/f_a_P;
+				//float f_Ip_New = f_Ip_Old + f_w*(f_Residual/f_a_P);
 				if(f_Ip_New < 0)
 				{
 					f_Ip_New = f_Ip_Old;
@@ -466,12 +531,12 @@ void radiativeTransferEquation::updateIntensity()
 			Point p_dAve = vec_Dfm_[iRayCt];
 			Point p_cent = vec_Cent_[iRayCt];
 			float fdp_s = 0.0;
-			pnfs.y = 1.0;
+			//pnfs.y = 1.0;
 			dotProduct(p_cent,pnfs,fdp_s);
-			if(fdp_s < 0)
+			if(fdp_s > 0)
 			{
 				float f_If = pFaces[i].m_d_vec_face_ray_Inten[iRayCt];
-				pnfs.y = -1.0;
+				//pnfs.y = -1.0;
 				float fdp_dfm = 0.0;
 				dotProduct(p_dAve,pnfs,fdp_dfm);
 				q_w += f_If*fdp_dfm;
