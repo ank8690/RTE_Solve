@@ -46,6 +46,14 @@ float DEGS_TO_RAD = 3.14159f/180.0f;
 double dSBConst = 5.67e-08; // Stefan-Boltzmann Constant
 int numVertices = 0;    // Tallies the number of vertex points added.
 float fTemp = 100.0;
+float fTemp_Bound_East = 0.0;
+float fTemp_Bound_West = 0.0;
+float fTemp_Bound_North = 0.0;
+float fTemp_Bound_South = 0.0;
+float fEm_Bound_East = 1.0;
+float fEm_Bound_West = 1.0;
+float fEm_Bound_North = 1.0;
+float fEm_Bound_South = 1.0;
 int ni = 10;
 int nj = 10;
 float fEmiss_Bound = 0.1;
@@ -194,7 +202,34 @@ void radiativeTransferEquation::updateIntensity()
 				// Start from the east face
 				if(pFaces[lFaceIndex_East].m_b_IfBoundary)
 				{
-					pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iRayCt] = 0.0;
+					pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iRayCt]  = 0.0;
+					if(fdp_e < 0)
+					{
+						//float f_Em_Total = 0.0;
+						float f_Rh_FirstTerm = 0.0;
+						f_Rh_FirstTerm = fEm_Bound_East*(dSBConst*pow(fTemp_Bound_East,4)/pi) ;
+						float f_Re_Term = (1 - fEm_Bound_East)/pi;
+						float f_SummationTerm = 0.0;
+						if(fabs(f_Re_Term) < 1e-3)
+						{
+							f_SummationTerm = 0.0;
+						}
+						else
+						{
+							for(int iSumRayCt = 0; iSumRayCt < inbRays; ++iSumRayCt)
+							{
+								p_dAve = vec_Dfm_[iSumRayCt];
+								float f_local_dp_e = 0.0;
+								dotProduct(p_dAve,pnfe,f_local_dp_e);
+								if(f_local_dp_e > 0)
+								{
+									float f_IFace =  pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iSumRayCt];
+									f_SummationTerm += f_IFace*f_local_dp_e;
+								}
+							}
+						}
+						pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iRayCt] = f_Rh_FirstTerm + f_SummationTerm;
+					}
 				}
 				else
 				{
@@ -217,6 +252,33 @@ void radiativeTransferEquation::updateIntensity()
 				if(pFaces[lFaceIndex_West].m_b_IfBoundary)
 				{
 					pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt] = 0.0;
+					if(fdp_w < 0)
+					{
+						//float f_Em_Total = 0.0;
+						float f_Rh_FirstTerm = 0.0;
+						f_Rh_FirstTerm = fEm_Bound_West*(dSBConst*pow(fTemp_Bound_West,4)/pi) ;
+						float f_Re_Term = (1 - fEm_Bound_West)/pi;
+						float f_SummationTerm = 0.0;
+						if(fabs(f_Re_Term) < 1e-3)
+						{
+							f_SummationTerm = 0.0;
+						}
+						else
+						{
+							for(int iSumRayCt = 0; iSumRayCt < inbRays; ++iSumRayCt)
+							{
+								p_dAve = vec_Dfm_[iSumRayCt];
+								float f_local_dp_w = 0.0;
+								dotProduct(p_dAve,pnfw,f_local_dp_w);
+								if(f_local_dp_w > 0)
+								{
+									float f_IFace =  pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iSumRayCt];
+									f_SummationTerm += f_IFace*f_local_dp_w;
+								}
+							}
+						}
+						pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt] = f_Rh_FirstTerm + f_SummationTerm;
+					}
 				}
 				else
 				{
@@ -238,6 +300,33 @@ void radiativeTransferEquation::updateIntensity()
 				if(pFaces[lFaceIndex_North].m_b_IfBoundary)
 				{
 					pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt] = 0.0;
+					if(fdp_n < 0)
+					{
+						//float f_Em_Total = 0.0;
+						float f_Rh_FirstTerm = 0.0;
+						f_Rh_FirstTerm = fEm_Bound_North*(dSBConst*pow(fTemp_Bound_North,4)/pi) ;
+						float f_Re_Term = (1 - fEm_Bound_North)/pi;
+						float f_SummationTerm = 0.0;
+						if(fabs(f_Re_Term) < 1e-3)
+						{
+							f_SummationTerm = 0.0;
+						}
+						else
+						{
+							for(int iSumRayCt = 0; iSumRayCt < inbRays; ++iSumRayCt)
+							{
+								p_dAve = vec_Dfm_[iSumRayCt];
+								float f_local_dp_n = 0.0;
+								dotProduct(p_dAve,pnfn,f_local_dp_n);
+								if(f_local_dp_n > 0)
+								{
+									float f_IFace =  pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iSumRayCt];
+									f_SummationTerm += f_IFace*f_local_dp_n;
+								}
+							}
+						}
+						pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt] = f_Rh_FirstTerm + f_SummationTerm;
+					}
 				}
 				else
 				{
@@ -259,6 +348,33 @@ void radiativeTransferEquation::updateIntensity()
 				if(pFaces[lFaceIndex_South].m_b_IfBoundary)
 				{
 					pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = 0.0;
+					if(fdp_s < 0)
+					{
+						//float f_Em_Total = 0.0;
+						float f_Rh_FirstTerm = 0.0;
+						f_Rh_FirstTerm = fEm_Bound_South*(dSBConst*pow(fTemp_Bound_South,4)/pi) ;
+						float f_Re_Term = (1 - fEm_Bound_South)/pi;
+						float f_SummationTerm = 0.0;
+						if(fabs(f_Re_Term) < 1e-3)
+						{
+							f_SummationTerm = 0.0;
+						}
+						else
+						{
+							for(int iSumRayCt = 0; iSumRayCt < inbRays; ++iSumRayCt)
+							{
+								p_dAve = vec_Dfm_[iSumRayCt];
+								float f_local_dp_s = 0.0;
+								dotProduct(p_dAve,pnfs,f_local_dp_s);
+								if(f_local_dp_s > 0)
+								{
+									float f_IFace =  pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iSumRayCt];
+									f_SummationTerm += f_IFace*f_local_dp_s;
+								}
+							}
+						}
+						pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = f_Rh_FirstTerm + f_SummationTerm;
+					}
 				}
 				else
 				{
@@ -292,22 +408,7 @@ void radiativeTransferEquation::updateIntensity()
 				float fP_V_Omega = f_Vol_Cell*fOmega; 
 				float f_Source = fP_V_Omega*fAbsCoeff*dSBConst*pow(pCells[iCellCt].m_f_Temp,4)/pi;
 
-				// This is just the different way of calculating residual and source term, it is giving 					the same results as the used formula, for now I have commented
-				//float f_Sm = fAbsCoeff*dSBConst*pow(pCells[iCellCt].m_f_Temp,4)/pi;
-				//float f_Residual = 0.0; 
-				// Here I am thinking to change the code as per Pradeep Sir Suggestion
-				// first I need to calculate residual
-				//float f_Residual = ( (-fAbsCoeff*f_Ip_Old) + f_Sm)*fP_V_Omega - ( (I_e*A_e*fabs(fdp_e)) + 																					(I_w*A_w*fabs(fdp_w)) + 
-					//									(I_n*A_n*fabs(fdp_n)) + (I_s*A_s*fabs(fdp_s)) );
-				//float f_Residual = ( (-fAbsCoeff*f_Ip_Old) + f_Sm)*fP_V_Omega - ( (I_e*A_e*fdp_e) + 																					(I_w*A_w*fdp_w) + 
-					//								(I_n*A_n*fdp_n) + (I_s*A_s*fdp_s) );
-
-				// If I use the fabs, then values are coming right, otherwise it is giving the same intensity
-				//vec_fResiduals.push_back(f_Residual);
-				//float f_Num = f_Source +  ( fabs(I_e*A_e*fdp_e) + fabs(I_w*A_w*fdp_w) + 
-				//							fabs(I_n*A_n*fdp_n) + fabs(I_s*A_s*fdp_s) );
-				// Sometimes, this f_Num value is coming negative, do I need to use fabs here?
-				//float f_DEN = fAbsCoeff*fP_V_Omega;
+				
 				// Now, I need to calculate a_p, the coefficient of I_p
 				float f_a_P = fAbsCoeff*fP_V_Omega + A_e*fabs(fdp_e) + A_n*fabs(fdp_n);
 				float f_Num = f_Source;
@@ -331,6 +432,10 @@ void radiativeTransferEquation::updateIntensity()
 				//						iNbIterations,iRayCt,iCellCt,f_a_P);
 				//float f_w = 1.0; // relaxation factor
 				float f_Ip_New = f_Num/f_a_P;
+				/*if(f_Ip_New < 0.0)
+				{
+					f_Ip_New = 0.0;
+				}*/
 				//float f_Ip_New = f_Ip_Old + f_w*(f_Residual/f_a_P);
 				/*if(iNbIterations == 8 && iCellCt == 7 && iRayCt == 22)
 				{
@@ -405,26 +510,30 @@ void radiativeTransferEquation::updateIntensity()
 		}
 		//printf("\n");
 		fprintf(pCellFile,"\n");
-	}
+	}*/
 
 	FILE* pFile = NULL;
 	pFile = fopen("Face_Intensities_0.dat","w");
 	// print the intensity for all the faces in all directions
 	for( i = 0; i < l_nbFaces; ++i)
 	{
-		printf("Face ID: %ld\n",i);
+		if(!pFaces[i].m_b_IfBoundary)
+		{
+			continue;
+		}
+		//printf("Face ID: %ld\n",i);
 		fprintf(pFile,"Face ID: %ld\n",i);
 		for(iRayCt = 0; iRayCt < inbRays; ++iRayCt)
 		{
 			float f_If = pFaces[i].m_d_vec_face_ray_Inten[iRayCt];
-			printf("ray Id:%d,Intensity = %lf\n ",iRayCt, f_If);
+			//printf("ray Id:%d,Intensity = %lf\n ",iRayCt, f_If);
 			fprintf(pFile,"ray Id:%d,Intensity = %lf\n",iRayCt, f_If);
 		}
-		printf("\n");
+		//printf("\n");
 		fprintf(pFile,"\n");
 	}
 	fclose(pFile);
-	fclose(pCellFile);*/
+	//fclose(pCellFile);
 
 	// print the intensity for each ray for the whole domain
 	FILE* pRayFile = NULL;
@@ -451,14 +560,14 @@ void radiativeTransferEquation::updateIntensity()
 	// to calculate wall heat flux at bottom
 	// first assign the intensities on the bottom faces through the cells
 	long l_CellCt = 0;
-	for( i = l_nbFaces/2; i < l_nbFaces; i+=nj+1)
+	/*for( i = l_nbFaces/2; i < l_nbFaces; i+=nj+1)
 	{
 		for(iRayCt = 0; iRayCt < inbRays; ++iRayCt)
 		{
 			pFaces[i].m_d_vec_face_ray_Inten[iRayCt] = pCells[l_CellCt].m_d_vec_cell_ray_Inten[iRayCt];
 		}
 		l_CellCt++;
-	}
+	}*/
 	int inRay = 0;
 	FILE* pFluxFile = NULL;
 	pFluxFile = fopen("Flux_bottom.dat","w");
@@ -479,15 +588,17 @@ void radiativeTransferEquation::updateIntensity()
 			if(fdp_s > 0)
 			{
 				inRay++;
+				float f_CellContribution = pCells[l_CellCt].m_d_vec_cell_ray_Inten[iRayCt];
 				float f_If = pFaces[i].m_d_vec_face_ray_Inten[iRayCt];
+				float f_TotalI = f_CellContribution + f_If;
 				//pnfs.y = -1.0;
 				float fdp_dfm = 0.0;
 				dotProduct(p_dAve,pnfs,fdp_dfm);
 				//q_w += f_If*(fdp_dfm);
-				q_w += f_If*(fdp_s*fOmega);
+				q_w += (f_TotalI)*(fdp_s*fOmega);
 				
 				fprintf(pFluxFile,"dfm.y = %lf,Intensity = %lf, heat flux = %lf\n",
-																			fdp_s*fOmega,f_If,q_w);
+																			fdp_s*fOmega,f_TotalI,q_w);
 				/*if(fdp_dfm < 0)
 				{*/
 					//q_w += f_If*(fdp_dfm);
@@ -498,6 +609,7 @@ void radiativeTransferEquation::updateIntensity()
 		i_Dist+=2;
 		q_w = q_w/(dSBConst*pow(fTemp,4));
 		fprintf(pFluxFile,"%lf\t %lf\n",f_Distance,q_w);
+		l_CellCt++;
 		//printf("%lf\t",q_w);		
 	}
 	fclose(pFluxFile);
@@ -505,14 +617,14 @@ void radiativeTransferEquation::updateIntensity()
 	// To write the flux on left side
 	// first assign the intensities on the left faces through the cells
 	l_CellCt = 0;
-	for( i = 0; i < l_nbFaces/2; i+=ni+1)
+	/*for( i = 0; i < l_nbFaces/2; i+=ni+1)
 	{
 		for(iRayCt = 0; iRayCt < inbRays; ++iRayCt)
 		{
 			pFaces[i].m_d_vec_face_ray_Inten[iRayCt] = pCells[l_CellCt].m_d_vec_cell_ray_Inten[iRayCt];
 		}
 		l_CellCt+=ni;
-	}
+	}*/
 	FILE* pFluxLeft = NULL;
 	pFluxLeft = fopen("Flux_Left.dat","w");
 	i_Dist = 0;
@@ -523,21 +635,27 @@ void radiativeTransferEquation::updateIntensity()
 		{
 			Point p_dAve = vec_Dfm_[iRayCt];
 			Point p_cent = vec_Cent_[iRayCt];
-			float fdp_s = 0.0;
-			dotProduct(p_cent,pnfs,fdp_s);
-			if(fdp_s > 0)
+			float fOmega = vec_omega_[iRayCt];
+			float fdp_w = 0.0;
+			dotProduct(p_cent,pnfw,fdp_w);
+			if(fdp_w > 0)
 			{
+				float f_CellContribution = pCells[l_CellCt].m_d_vec_cell_ray_Inten[iRayCt];
 				float f_If = pFaces[i].m_d_vec_face_ray_Inten[iRayCt];
+				float f_TotalI = f_CellContribution + f_If;
 				//pnfs.y = -1.0;
 				float fdp_dfm = 0.0;
-				dotProduct(p_dAve,pnfs,fdp_dfm);
-				q_w += f_If*(fdp_dfm);
+				dotProduct(p_dAve,pnfw,fdp_dfm);
+				q_w += (f_CellContribution+f_If)*(fdp_dfm);
+				fprintf(pFluxLeft,"dfm.y = %lf,Intensity = %lf, heat flux = %lf\n",
+																			fdp_w*fOmega,f_TotalI,q_w);
 			}
 		}
 		float f_Distance = pFaces[i].m_f_Area*(i_Dist + 1)/2.0;
 		i_Dist+=2;
 		q_w = q_w/(dSBConst*pow(fTemp,4));
 		fprintf(pFluxLeft,"%lf\t %lf\n",f_Distance,q_w);
+		l_CellCt+=ni;
 		//printf("%lf\t",q_w);		
 	}
 	fclose(pFluxLeft);
@@ -545,14 +663,14 @@ void radiativeTransferEquation::updateIntensity()
 	// To write the flux on right side
 	// first assign the intensities on the right faces through the cells
 	l_CellCt = ni - 1;
-	for( i = ni; i < l_nbFaces/2; i+=ni+1)
+	/*for( i = ni; i < l_nbFaces/2; i+=ni+1)
 	{
 		for(iRayCt = 0; iRayCt < inbRays; ++iRayCt)
 		{
 			pFaces[i].m_d_vec_face_ray_Inten[iRayCt] = pCells[l_CellCt].m_d_vec_cell_ray_Inten[iRayCt];
 		}
 		l_CellCt+=ni;
-	}
+	}*/
 	FILE* pFluxRight = NULL;
 	pFluxRight = fopen("Flux_Right.dat","w");
 	i_Dist = 0;
@@ -563,21 +681,27 @@ void radiativeTransferEquation::updateIntensity()
 		{
 			Point p_dAve = vec_Dfm_[iRayCt];
 			Point p_cent = vec_Cent_[iRayCt];
-			float fdp_s = 0.0;
-			dotProduct(p_cent,pnfs,fdp_s);
-			if(fdp_s > 0)
+			float fOmega = vec_omega_[iRayCt];
+			float fdp_e = 0.0;
+			dotProduct(p_cent,pnfe,fdp_e);
+			if(fdp_e > 0)
 			{
+				float f_CellContribution = pCells[l_CellCt].m_d_vec_cell_ray_Inten[iRayCt];
 				float f_If = pFaces[i].m_d_vec_face_ray_Inten[iRayCt];
+				float f_TotalI = f_CellContribution + f_If;
 				//pnfs.y = -1.0;
 				float fdp_dfm = 0.0;
-				dotProduct(p_dAve,pnfs,fdp_dfm);
-				q_w += f_If*(fdp_dfm);
+				dotProduct(p_dAve,pnfe,fdp_dfm);
+				q_w += (f_TotalI)*(fdp_dfm);	
+				fprintf(pFluxRight,"dfm.y = %lf,Intensity = %lf, heat flux = %lf\n",
+																			fdp_e*fOmega,f_TotalI,q_w);
 			}
 		}
 		float f_Distance = pFaces[i].m_f_Area*(i_Dist + 1)/2.0;
 		i_Dist+=2;
 		q_w = q_w/(dSBConst*pow(fTemp,4));
 		fprintf(pFluxRight,"%lf\t %lf\n",f_Distance,q_w);
+		l_CellCt+=ni;
 		//printf("%lf\t",q_w);		
 	}
 	fclose(pFluxRight);
@@ -585,14 +709,14 @@ void radiativeTransferEquation::updateIntensity()
 	// to calculate wall heat flux at top
 	// first assign the intensities on the top faces through the cells
 	l_CellCt = ni*(nj-1);
-	for( i = l_nbFaces/2 + nj; i < l_nbFaces; i+=nj+1)
+	/*for( i = l_nbFaces/2 + nj; i < l_nbFaces; i+=nj+1)
 	{
 		for(iRayCt = 0; iRayCt < inbRays; ++iRayCt)
 		{
 			pFaces[i].m_d_vec_face_ray_Inten[iRayCt] = pCells[l_CellCt].m_d_vec_cell_ray_Inten[iRayCt];
 		}
 		l_CellCt++;
-	}
+	}*/
 	FILE* pFluxTop = NULL;
 	pFluxTop = fopen("Flux_top.dat","w");
 	i_Dist = 0;
@@ -605,31 +729,37 @@ void radiativeTransferEquation::updateIntensity()
 		{
 			Point p_dAve = vec_Dfm_[iRayCt];
 			Point p_cent = vec_Cent_[iRayCt];
-			float fdp_s = 0.0;
-			dotProduct(p_cent,pnfs,fdp_s);
-			if(fdp_s > 0)
+			float fOmega = vec_omega_[iRayCt];
+			float fdp_n = 0.0;
+			dotProduct(p_cent,pnfn,fdp_n);
+			if(fdp_n > 0)
 			{
 				inRay++;
+				float f_CellContribution = pCells[l_CellCt].m_d_vec_cell_ray_Inten[iRayCt];
 				float f_If = pFaces[i].m_d_vec_face_ray_Inten[iRayCt];
+				float f_TotalI = f_CellContribution + f_If;
 				float fdp_dfm = 0.0;
-				dotProduct(p_dAve,pnfs,fdp_dfm);
-				q_w += f_If*(fdp_dfm);
+				dotProduct(p_dAve,pnfn,fdp_dfm);
+				q_w += (f_TotalI)*(fdp_dfm);
+				fprintf(pFluxTop,"dfm.y = %lf,Intensity = %lf, heat flux = %lf\n",
+																			fdp_n*fOmega,f_TotalI,q_w);
 			}
 		}
 		float f_Distance = pFaces[i].m_f_Area*(i_Dist + 1)/2.0;
 		i_Dist+=2;
 		q_w = q_w/(dSBConst*pow(fTemp,4));
 		fprintf(pFluxTop,"%lf\t %lf\n",f_Distance,q_w);
+		l_CellCt++;
 		//printf("%lf\t",q_w);		
 	}
 	fclose(pFluxTop);
 	if(pFaces)
 	{
-		delete pFaces; pFaces = NULL; 
+		delete []pFaces; pFaces = NULL; 
 	}
 	if(pCells)
 	{
-		delete pCells; pCells = NULL;
+		delete []pCells; pCells = NULL;
 	}
 // the end
 }

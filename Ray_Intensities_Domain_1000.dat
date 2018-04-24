@@ -1,0 +1,704 @@
+ray ID: 0, Dfm.x = 0.004266, Dfm.y = 0.010299, Dfm.z = 0.051777
+Cell Id:0,Intensity = 9889.392578
+Cell Id:1,Intensity = 11198.787109
+Cell Id:2,Intensity = 13107.662109
+Cell Id:3,Intensity = 13050.558594
+Cell Id:4,Intensity = 15197.053711
+Cell Id:5,Intensity = 18547.150391
+Cell Id:6,Intensity = 20667.419922
+Cell Id:7,Intensity = 25698.048828
+Cell Id:8,Intensity = 35077.589844
+
+ray ID: 1, Dfm.x = 0.010299, Dfm.y = 0.004266, Dfm.z = 0.051777
+Cell Id:0,Intensity = 9889.393555
+Cell Id:1,Intensity = 13050.558594
+Cell Id:2,Intensity = 20667.412109
+Cell Id:3,Intensity = 11198.790039
+Cell Id:4,Intensity = 15197.056641
+Cell Id:5,Intensity = 25698.044922
+Cell Id:6,Intensity = 13107.666016
+Cell Id:7,Intensity = 18547.156250
+Cell Id:8,Intensity = 35077.597656
+
+ray ID: 2, Dfm.x = 0.010299, Dfm.y = -0.004266, Dfm.z = 0.051776
+Cell Id:0,Intensity = 13107.662109
+Cell Id:1,Intensity = 18547.152344
+Cell Id:2,Intensity = 35077.613281
+Cell Id:3,Intensity = 11198.784180
+Cell Id:4,Intensity = 15197.051758
+Cell Id:5,Intensity = 25698.048828
+Cell Id:6,Intensity = 9889.388672
+Cell Id:7,Intensity = 13050.553711
+Cell Id:8,Intensity = 20667.410156
+
+ray ID: 3, Dfm.x = 0.004266, Dfm.y = -0.010299, Dfm.z = 0.051777
+Cell Id:0,Intensity = 20667.357422
+Cell Id:1,Intensity = 25698.017578
+Cell Id:2,Intensity = 35077.660156
+Cell Id:3,Intensity = 13050.537109
+Cell Id:4,Intensity = 15197.048828
+Cell Id:5,Intensity = 18547.185547
+Cell Id:6,Intensity = 9889.380859
+Cell Id:7,Intensity = 11198.787109
+Cell Id:8,Intensity = 13107.684570
+
+ray ID: 4, Dfm.x = -0.004266, Dfm.y = -0.010299, Dfm.z = 0.051777
+Cell Id:0,Intensity = 35077.542969
+Cell Id:1,Intensity = 25698.076172
+Cell Id:2,Intensity = 20667.462891
+Cell Id:3,Intensity = 18547.123047
+Cell Id:4,Intensity = 15197.057617
+Cell Id:5,Intensity = 13050.574219
+Cell Id:6,Intensity = 13107.642578
+Cell Id:7,Intensity = 11198.786133
+Cell Id:8,Intensity = 9889.400391
+
+ray ID: 5, Dfm.x = -0.010299, Dfm.y = -0.004266, Dfm.z = 0.051777
+Cell Id:0,Intensity = 35077.640625
+Cell Id:1,Intensity = 18547.179688
+Cell Id:2,Intensity = 13107.682617
+Cell Id:3,Intensity = 25698.021484
+Cell Id:4,Intensity = 15197.052734
+Cell Id:5,Intensity = 11198.790039
+Cell Id:6,Intensity = 20667.369141
+Cell Id:7,Intensity = 13050.543945
+Cell Id:8,Intensity = 9889.386719
+
+ray ID: 6, Dfm.x = -0.010299, Dfm.y = 0.004266, Dfm.z = 0.051777
+Cell Id:0,Intensity = 20667.472656
+Cell Id:1,Intensity = 13050.576172
+Cell Id:2,Intensity = 9889.401367
+Cell Id:3,Intensity = 25698.080078
+Cell Id:4,Intensity = 15197.056641
+Cell Id:5,Intensity = 11198.786133
+Cell Id:6,Intensity = 35077.542969
+Cell Id:7,Intensity = 18547.119141
+Cell Id:8,Intensity = 13107.639648
+
+ray ID: 7, Dfm.x = -0.004266, Dfm.y = 0.010299, Dfm.z = 0.051777
+Cell Id:0,Intensity = 13107.669922
+Cell Id:1,Intensity = 11198.786133
+Cell Id:2,Intensity = 9889.386719
+Cell Id:3,Intensity = 18547.164062
+Cell Id:4,Intensity = 15197.051758
+Cell Id:5,Intensity = 13050.549805
+Cell Id:6,Intensity = 35077.625000
+Cell Id:7,Intensity = 25698.037109
+Cell Id:8,Intensity = 20667.396484
+
+ray ID: 8, Dfm.x = 0.034596, Dfm.y = 0.083522, Dfm.z = 0.125000
+Cell Id:0,Intensity = 5474.041992
+Cell Id:1,Intensity = 6591.063477
+Cell Id:2,Intensity = 8567.208008
+Cell Id:3,Intensity = 8170.776855
+Cell Id:4,Intensity = 10388.378906
+Cell Id:5,Intensity = 14843.325195
+Cell Id:6,Intensity = 18723.013672
+Cell Id:7,Intensity = 28406.601562
+Cell Id:8,Intensity = 61269.253906
+
+ray ID: 9, Dfm.x = 0.083522, Dfm.y = 0.034596, Dfm.z = 0.125000
+Cell Id:0,Intensity = 5474.038574
+Cell Id:1,Intensity = 8170.770020
+Cell Id:2,Intensity = 18722.980469
+Cell Id:3,Intensity = 6591.062988
+Cell Id:4,Intensity = 10388.375977
+Cell Id:5,Intensity = 28406.570312
+Cell Id:6,Intensity = 8567.213867
+Cell Id:7,Intensity = 14843.336914
+Cell Id:8,Intensity = 61269.316406
+
+ray ID: 10, Dfm.x = 0.083522, Dfm.y = -0.034596, Dfm.z = 0.125000
+Cell Id:0,Intensity = 8567.205078
+Cell Id:1,Intensity = 14843.316406
+Cell Id:2,Intensity = 61269.167969
+Cell Id:3,Intensity = 6591.068848
+Cell Id:4,Intensity = 10388.387695
+Cell Id:5,Intensity = 28406.636719
+Cell Id:6,Intensity = 5474.048828
+Cell Id:7,Intensity = 8170.789062
+Cell Id:8,Intensity = 18723.052734
+
+ray ID: 11, Dfm.x = 0.034596, Dfm.y = -0.083522, Dfm.z = 0.125000
+Cell Id:0,Intensity = 18722.957031
+Cell Id:1,Intensity = 28406.542969
+Cell Id:2,Intensity = 61269.312500
+Cell Id:3,Intensity = 8170.772949
+Cell Id:4,Intensity = 10388.383789
+Cell Id:5,Intensity = 14843.360352
+Cell Id:6,Intensity = 5474.042969
+Cell Id:7,Intensity = 6591.070312
+Cell Id:8,Intensity = 8567.228516
+
+ray ID: 12, Dfm.x = -0.034596, Dfm.y = -0.083522, Dfm.z = 0.125000
+Cell Id:0,Intensity = 61269.171875
+Cell Id:1,Intensity = 28406.664062
+Cell Id:2,Intensity = 18723.076172
+Cell Id:3,Intensity = 14843.293945
+Cell Id:4,Intensity = 10388.379883
+Cell Id:5,Intensity = 8170.786133
+Cell Id:6,Intensity = 8567.190430
+Cell Id:7,Intensity = 6591.061523
+Cell Id:8,Intensity = 5474.044922
+
+ray ID: 13, Dfm.x = -0.083522, Dfm.y = -0.034596, Dfm.z = 0.125000
+Cell Id:0,Intensity = 61269.398438
+Cell Id:1,Intensity = 14843.368164
+Cell Id:2,Intensity = 8567.230469
+Cell Id:3,Intensity = 28406.513672
+Cell Id:4,Intensity = 10388.375977
+Cell Id:5,Intensity = 6591.065430
+Cell Id:6,Intensity = 18722.921875
+Cell Id:7,Intensity = 8170.761719
+Cell Id:8,Intensity = 5474.036133
+
+ray ID: 14, Dfm.x = -0.083522, Dfm.y = 0.034596, Dfm.z = 0.125000
+Cell Id:0,Intensity = 18723.123047
+Cell Id:1,Intensity = 8170.798340
+Cell Id:2,Intensity = 5474.051270
+Cell Id:3,Intensity = 28406.707031
+Cell Id:4,Intensity = 10388.386719
+Cell Id:5,Intensity = 6591.064453
+Cell Id:6,Intensity = 61269.082031
+Cell Id:7,Intensity = 14843.280273
+Cell Id:8,Intensity = 8567.183594
+
+ray ID: 15, Dfm.x = -0.034596, Dfm.y = 0.083523, Dfm.z = 0.125000
+Cell Id:0,Intensity = 8567.216797
+Cell Id:1,Intensity = 6591.063965
+Cell Id:2,Intensity = 5474.039062
+Cell Id:3,Intensity = 14843.342773
+Cell Id:4,Intensity = 10388.376953
+Cell Id:5,Intensity = 8170.770508
+Cell Id:6,Intensity = 61269.320312
+Cell Id:7,Intensity = 28406.566406
+Cell Id:8,Intensity = 18722.974609
+
+ray ID: 16, Dfm.x = 0.077489, Dfm.y = 0.187075, Dfm.z = 0.125000
+Cell Id:0,Intensity = 4163.026367
+Cell Id:1,Intensity = 5101.095703
+Cell Id:2,Intensity = 6857.756836
+Cell Id:3,Intensity = 6427.731934
+Cell Id:4,Intensity = 8386.429688
+Cell Id:5,Intensity = 12629.206055
+Cell Id:6,Intensity = 16797.853516
+Cell Id:7,Intensity = 27435.375000
+Cell Id:8,Intensity = 74635.187500
+
+ray ID: 17, Dfm.x = 0.187075, Dfm.y = 0.077489, Dfm.z = 0.125000
+Cell Id:0,Intensity = 4163.024902
+Cell Id:1,Intensity = 6427.727539
+Cell Id:2,Intensity = 16797.814453
+Cell Id:3,Intensity = 5101.097168
+Cell Id:4,Intensity = 8386.429688
+Cell Id:5,Intensity = 27435.330078
+Cell Id:6,Intensity = 6857.766602
+Cell Id:7,Intensity = 12629.224609
+Cell Id:8,Intensity = 74635.250000
+
+ray ID: 18, Dfm.x = 0.187075, Dfm.y = -0.077489, Dfm.z = 0.125000
+Cell Id:0,Intensity = 6857.747559
+Cell Id:1,Intensity = 12629.190430
+Cell Id:2,Intensity = 74635.179688
+Cell Id:3,Intensity = 5101.092285
+Cell Id:4,Intensity = 8386.426758
+Cell Id:5,Intensity = 27435.406250
+Cell Id:6,Intensity = 4163.024902
+Cell Id:7,Intensity = 6427.732422
+Cell Id:8,Intensity = 16797.876953
+
+ray ID: 19, Dfm.x = 0.077489, Dfm.y = -0.187075, Dfm.z = 0.125000
+Cell Id:0,Intensity = 16797.781250
+Cell Id:1,Intensity = 27435.294922
+Cell Id:2,Intensity = 74635.328125
+Cell Id:3,Intensity = 6427.720215
+Cell Id:4,Intensity = 8386.423828
+Cell Id:5,Intensity = 12629.229492
+Cell Id:6,Intensity = 4163.020996
+Cell Id:7,Intensity = 5101.094238
+Cell Id:8,Intensity = 6857.768555
+
+ray ID: 20, Dfm.x = -0.077489, Dfm.y = -0.187075, Dfm.z = 0.125000
+Cell Id:0,Intensity = 74635.117188
+Cell Id:1,Intensity = 27435.429688
+Cell Id:2,Intensity = 16797.898438
+Cell Id:3,Intensity = 12629.186523
+Cell Id:4,Intensity = 8386.430664
+Cell Id:5,Intensity = 6427.736816
+Cell Id:6,Intensity = 6857.746094
+Cell Id:7,Intensity = 5101.094238
+Cell Id:8,Intensity = 4163.027344
+
+ray ID: 21, Dfm.x = -0.187075, Dfm.y = -0.077490, Dfm.z = 0.125000
+Cell Id:0,Intensity = 74635.398438
+Cell Id:1,Intensity = 12629.250977
+Cell Id:2,Intensity = 6857.779297
+Cell Id:3,Intensity = 27435.242188
+Cell Id:4,Intensity = 8386.424805
+Cell Id:5,Intensity = 5101.096191
+Cell Id:6,Intensity = 16797.736328
+Cell Id:7,Intensity = 6427.714844
+Cell Id:8,Intensity = 4163.019531
+
+ray ID: 22, Dfm.x = -0.187076, Dfm.y = 0.077488, Dfm.z = 0.125000
+Cell Id:0,Intensity = 16797.955078
+Cell Id:1,Intensity = 6427.744629
+Cell Id:2,Intensity = 4163.030273
+Cell Id:3,Intensity = 27435.494141
+Cell Id:4,Intensity = 8386.432617
+Cell Id:5,Intensity = 5101.093262
+Cell Id:6,Intensity = 74635.023438
+Cell Id:7,Intensity = 12629.163086
+Cell Id:8,Intensity = 6857.734863
+
+ray ID: 23, Dfm.x = -0.077490, Dfm.y = 0.187076, Dfm.z = 0.125001
+Cell Id:0,Intensity = 6857.765137
+Cell Id:1,Intensity = 5101.094238
+Cell Id:2,Intensity = 4163.022461
+Cell Id:3,Intensity = 12629.224609
+Cell Id:4,Intensity = 8386.425781
+Cell Id:5,Intensity = 6427.723145
+Cell Id:6,Intensity = 74635.296875
+Cell Id:7,Intensity = 27435.316406
+Cell Id:8,Intensity = 16797.800781
+
+ray ID: 24, Dfm.x = 0.107819, Dfm.y = 0.260298, Dfm.z = 0.051777
+Cell Id:0,Intensity = 3717.343018
+Cell Id:1,Intensity = 4581.872559
+Cell Id:2,Intensity = 6232.374512
+Cell Id:3,Intensity = 5804.504395
+Cell Id:4,Intensity = 7639.841797
+Cell Id:5,Intensity = 11718.773438
+Cell Id:6,Intensity = 15908.395508
+Cell Id:7,Intensity = 26694.873047
+Cell Id:8,Intensity = 80135.710938
+
+ray ID: 25, Dfm.x = 0.260298, Dfm.y = 0.107819, Dfm.z = 0.051777
+Cell Id:0,Intensity = 3717.341064
+Cell Id:1,Intensity = 5804.499023
+Cell Id:2,Intensity = 15908.354492
+Cell Id:3,Intensity = 4581.872559
+Cell Id:4,Intensity = 7639.838379
+Cell Id:5,Intensity = 26694.820312
+Cell Id:6,Intensity = 6232.380859
+Cell Id:7,Intensity = 11718.787109
+Cell Id:8,Intensity = 80135.765625
+
+ray ID: 26, Dfm.x = 0.260299, Dfm.y = -0.107819, Dfm.z = 0.051777
+Cell Id:0,Intensity = 6232.369629
+Cell Id:1,Intensity = 11718.761719
+Cell Id:2,Intensity = 80135.625000
+Cell Id:3,Intensity = 4581.872070
+Cell Id:4,Intensity = 7639.841309
+Cell Id:5,Intensity = 26694.894531
+Cell Id:6,Intensity = 3717.344482
+Cell Id:7,Intensity = 5804.507324
+Cell Id:8,Intensity = 15908.417969
+
+ray ID: 27, Dfm.x = 0.107820, Dfm.y = -0.260298, Dfm.z = 0.051777
+Cell Id:0,Intensity = 15908.333984
+Cell Id:1,Intensity = 26694.800781
+Cell Id:2,Intensity = 80135.820312
+Cell Id:3,Intensity = 5804.497559
+Cell Id:4,Intensity = 7639.840820
+Cell Id:5,Intensity = 11718.798828
+Cell Id:6,Intensity = 3717.341064
+Cell Id:7,Intensity = 4581.874023
+Cell Id:8,Intensity = 6232.386719
+
+ray ID: 28, Dfm.x = -0.107818, Dfm.y = -0.260299, Dfm.z = 0.051777
+Cell Id:0,Intensity = 80135.570312
+Cell Id:1,Intensity = 26694.945312
+Cell Id:2,Intensity = 15908.457031
+Cell Id:3,Intensity = 11718.748047
+Cell Id:4,Intensity = 7639.843262
+Cell Id:5,Intensity = 5804.512207
+Cell Id:6,Intensity = 6232.362305
+Cell Id:7,Intensity = 4581.872070
+Cell Id:8,Intensity = 3717.346191
+
+ray ID: 29, Dfm.x = -0.260298, Dfm.y = -0.107820, Dfm.z = 0.051777
+Cell Id:0,Intensity = 80135.875000
+Cell Id:1,Intensity = 11718.812500
+Cell Id:2,Intensity = 6232.394043
+Cell Id:3,Intensity = 26694.751953
+Cell Id:4,Intensity = 7639.838867
+Cell Id:5,Intensity = 4581.874023
+Cell Id:6,Intensity = 15908.296875
+Cell Id:7,Intensity = 5804.493164
+Cell Id:8,Intensity = 3717.339355
+
+ray ID: 30, Dfm.x = -0.260299, Dfm.y = 0.107818, Dfm.z = 0.051777
+Cell Id:0,Intensity = 15908.499023
+Cell Id:1,Intensity = 5804.517578
+Cell Id:2,Intensity = 3717.347900
+Cell Id:3,Intensity = 26694.996094
+Cell Id:4,Intensity = 7639.844727
+Cell Id:5,Intensity = 4581.871582
+Cell Id:6,Intensity = 80135.492188
+Cell Id:7,Intensity = 11718.731445
+Cell Id:8,Intensity = 6232.354004
+
+ray ID: 31, Dfm.x = -0.107820, Dfm.y = 0.260300, Dfm.z = 0.051777
+Cell Id:0,Intensity = 6232.384277
+Cell Id:1,Intensity = 4581.872559
+Cell Id:2,Intensity = 3717.340576
+Cell Id:3,Intensity = 11718.793945
+Cell Id:4,Intensity = 7639.838379
+Cell Id:5,Intensity = 5804.497070
+Cell Id:6,Intensity = 80135.796875
+Cell Id:7,Intensity = 26694.798828
+Cell Id:8,Intensity = 15908.337891
+
+ray ID: 32, Dfm.x = 0.107819, Dfm.y = 0.260299, Dfm.z = -0.051776
+Cell Id:0,Intensity = 3717.341309
+Cell Id:1,Intensity = 4581.871094
+Cell Id:2,Intensity = 6232.374512
+Cell Id:3,Intensity = 5804.500977
+Cell Id:4,Intensity = 7639.838867
+Cell Id:5,Intensity = 11718.774414
+Cell Id:6,Intensity = 15908.379883
+Cell Id:7,Intensity = 26694.853516
+Cell Id:8,Intensity = 80135.734375
+
+ray ID: 33, Dfm.x = 0.260299, Dfm.y = 0.107819, Dfm.z = -0.051776
+Cell Id:0,Intensity = 3717.340088
+Cell Id:1,Intensity = 5804.498047
+Cell Id:2,Intensity = 15908.353516
+Cell Id:3,Intensity = 4581.871094
+Cell Id:4,Intensity = 7639.837891
+Cell Id:5,Intensity = 26694.818359
+Cell Id:6,Intensity = 6232.379395
+Cell Id:7,Intensity = 11718.784180
+Cell Id:8,Intensity = 80135.781250
+
+ray ID: 34, Dfm.x = 0.260299, Dfm.y = -0.107819, Dfm.z = -0.051776
+Cell Id:0,Intensity = 6232.366211
+Cell Id:1,Intensity = 11718.756836
+Cell Id:2,Intensity = 80135.640625
+Cell Id:3,Intensity = 4581.871094
+Cell Id:4,Intensity = 7639.840332
+Cell Id:5,Intensity = 26694.904297
+Cell Id:6,Intensity = 3717.343750
+Cell Id:7,Intensity = 5804.507324
+Cell Id:8,Intensity = 15908.423828
+
+ray ID: 35, Dfm.x = 0.107820, Dfm.y = -0.260299, Dfm.z = -0.051776
+Cell Id:0,Intensity = 15908.333984
+Cell Id:1,Intensity = 26694.796875
+Cell Id:2,Intensity = 80135.812500
+Cell Id:3,Intensity = 5804.495605
+Cell Id:4,Intensity = 7639.836914
+Cell Id:5,Intensity = 11718.792969
+Cell Id:6,Intensity = 3717.339600
+Cell Id:7,Intensity = 4581.871582
+Cell Id:8,Intensity = 6232.383789
+
+ray ID: 36, Dfm.x = -0.107818, Dfm.y = -0.260299, Dfm.z = -0.051776
+Cell Id:0,Intensity = 80135.585938
+Cell Id:1,Intensity = 26694.955078
+Cell Id:2,Intensity = 15908.462891
+Cell Id:3,Intensity = 11718.743164
+Cell Id:4,Intensity = 7639.842285
+Cell Id:5,Intensity = 5804.511719
+Cell Id:6,Intensity = 6232.358887
+Cell Id:7,Intensity = 4581.870605
+Cell Id:8,Intensity = 3717.345215
+
+ray ID: 37, Dfm.x = -0.260299, Dfm.y = -0.107820, Dfm.z = -0.051776
+Cell Id:0,Intensity = 80135.875000
+Cell Id:1,Intensity = 11718.805664
+Cell Id:2,Intensity = 6232.390137
+Cell Id:3,Intensity = 26694.759766
+Cell Id:4,Intensity = 7639.836426
+Cell Id:5,Intensity = 4581.872070
+Cell Id:6,Intensity = 15908.302734
+Cell Id:7,Intensity = 5804.492188
+Cell Id:8,Intensity = 3717.338135
+
+ray ID: 38, Dfm.x = -0.260299, Dfm.y = 0.107818, Dfm.z = -0.051777
+Cell Id:0,Intensity = 15908.482422
+Cell Id:1,Intensity = 5804.515137
+Cell Id:2,Intensity = 3717.346680
+Cell Id:3,Intensity = 26694.978516
+Cell Id:4,Intensity = 7639.843750
+Cell Id:5,Intensity = 4581.871582
+Cell Id:6,Intensity = 80135.539062
+Cell Id:7,Intensity = 11718.738281
+Cell Id:8,Intensity = 6232.356934
+
+ray ID: 39, Dfm.x = -0.107820, Dfm.y = 0.260300, Dfm.z = -0.051777
+Cell Id:0,Intensity = 6232.386719
+Cell Id:1,Intensity = 4581.872070
+Cell Id:2,Intensity = 3717.338867
+Cell Id:3,Intensity = 11718.798828
+Cell Id:4,Intensity = 7639.836914
+Cell Id:5,Intensity = 5804.493652
+Cell Id:6,Intensity = 80135.835938
+Cell Id:7,Intensity = 26694.779297
+Cell Id:8,Intensity = 15908.320312
+
+ray ID: 40, Dfm.x = 0.077489, Dfm.y = 0.187076, Dfm.z = -0.125000
+Cell Id:0,Intensity = 4163.018555
+Cell Id:1,Intensity = 5101.087402
+Cell Id:2,Intensity = 6857.749512
+Cell Id:3,Intensity = 6427.720215
+Cell Id:4,Intensity = 8386.417969
+Cell Id:5,Intensity = 12629.198242
+Cell Id:6,Intensity = 16797.824219
+Cell Id:7,Intensity = 27435.349609
+Cell Id:8,Intensity = 74635.304688
+
+ray ID: 41, Dfm.x = 0.187076, Dfm.y = 0.077489, Dfm.z = -0.125000
+Cell Id:0,Intensity = 4163.017578
+Cell Id:1,Intensity = 6427.717773
+Cell Id:2,Intensity = 16797.808594
+Cell Id:3,Intensity = 5101.087891
+Cell Id:4,Intensity = 8386.416992
+Cell Id:5,Intensity = 27435.330078
+Cell Id:6,Intensity = 6857.753906
+Cell Id:7,Intensity = 12629.205078
+Cell Id:8,Intensity = 74635.328125
+
+ray ID: 42, Dfm.x = 0.187076, Dfm.y = -0.077489, Dfm.z = -0.125000
+Cell Id:0,Intensity = 6857.741211
+Cell Id:1,Intensity = 12629.180664
+Cell Id:2,Intensity = 74635.234375
+Cell Id:3,Intensity = 5101.086426
+Cell Id:4,Intensity = 8386.417969
+Cell Id:5,Intensity = 27435.392578
+Cell Id:6,Intensity = 4163.019531
+Cell Id:7,Intensity = 6427.724609
+Cell Id:8,Intensity = 16797.863281
+
+ray ID: 43, Dfm.x = 0.077490, Dfm.y = -0.187076, Dfm.z = -0.125000
+Cell Id:0,Intensity = 16797.769531
+Cell Id:1,Intensity = 27435.285156
+Cell Id:2,Intensity = 74635.398438
+Cell Id:3,Intensity = 6427.712402
+Cell Id:4,Intensity = 8386.415039
+Cell Id:5,Intensity = 12629.221680
+Cell Id:6,Intensity = 4163.015625
+Cell Id:7,Intensity = 5101.088379
+Cell Id:8,Intensity = 6857.761719
+
+ray ID: 44, Dfm.x = -0.077489, Dfm.y = -0.187076, Dfm.z = -0.125000
+Cell Id:0,Intensity = 74635.179688
+Cell Id:1,Intensity = 27435.417969
+Cell Id:2,Intensity = 16797.886719
+Cell Id:3,Intensity = 12629.176758
+Cell Id:4,Intensity = 8386.421875
+Cell Id:5,Intensity = 6427.730469
+Cell Id:6,Intensity = 6857.739746
+Cell Id:7,Intensity = 5101.088379
+Cell Id:8,Intensity = 4163.022461
+
+ray ID: 45, Dfm.x = -0.187076, Dfm.y = -0.077490, Dfm.z = -0.125000
+Cell Id:0,Intensity = 74635.460938
+Cell Id:1,Intensity = 12629.244141
+Cell Id:2,Intensity = 6857.773438
+Cell Id:3,Intensity = 27435.236328
+Cell Id:4,Intensity = 8386.416992
+Cell Id:5,Intensity = 5101.090820
+Cell Id:6,Intensity = 16797.726562
+Cell Id:7,Intensity = 6427.708496
+Cell Id:8,Intensity = 4163.015137
+
+ray ID: 46, Dfm.x = -0.187076, Dfm.y = 0.077489, Dfm.z = -0.124999
+Cell Id:0,Intensity = 16797.908203
+Cell Id:1,Intensity = 6427.729492
+Cell Id:2,Intensity = 4163.020996
+Cell Id:3,Intensity = 27435.443359
+Cell Id:4,Intensity = 8386.417969
+Cell Id:5,Intensity = 5101.084961
+Cell Id:6,Intensity = 74635.171875
+Cell Id:7,Intensity = 12629.162109
+Cell Id:8,Intensity = 6857.730957
+
+ray ID: 47, Dfm.x = -0.077490, Dfm.y = 0.187077, Dfm.z = -0.125000
+Cell Id:0,Intensity = 6857.762207
+Cell Id:1,Intensity = 5101.086426
+Cell Id:2,Intensity = 4163.013184
+Cell Id:3,Intensity = 12629.224609
+Cell Id:4,Intensity = 8386.413086
+Cell Id:5,Intensity = 6427.708496
+Cell Id:6,Intensity = 74635.453125
+Cell Id:7,Intensity = 27435.269531
+Cell Id:8,Intensity = 16797.751953
+
+ray ID: 48, Dfm.x = 0.034596, Dfm.y = 0.083523, Dfm.z = -0.125000
+Cell Id:0,Intensity = 5474.040039
+Cell Id:1,Intensity = 6591.061035
+Cell Id:2,Intensity = 8567.203125
+Cell Id:3,Intensity = 8170.774902
+Cell Id:4,Intensity = 10388.376953
+Cell Id:5,Intensity = 14843.320312
+Cell Id:6,Intensity = 18723.017578
+Cell Id:7,Intensity = 28406.609375
+Cell Id:8,Intensity = 61269.269531
+
+ray ID: 49, Dfm.x = 0.083523, Dfm.y = 0.034596, Dfm.z = -0.125000
+Cell Id:0,Intensity = 5474.041016
+Cell Id:1,Intensity = 8170.773926
+Cell Id:2,Intensity = 18722.990234
+Cell Id:3,Intensity = 6591.064941
+Cell Id:4,Intensity = 10388.379883
+Cell Id:5,Intensity = 28406.580078
+Cell Id:6,Intensity = 8567.213867
+Cell Id:7,Intensity = 14843.337891
+Cell Id:8,Intensity = 61269.285156
+
+ray ID: 50, Dfm.x = 0.083523, Dfm.y = -0.034596, Dfm.z = -0.125000
+Cell Id:0,Intensity = 8567.196289
+Cell Id:1,Intensity = 14843.305664
+Cell Id:2,Intensity = 61269.210938
+Cell Id:3,Intensity = 6591.061523
+Cell Id:4,Intensity = 10388.378906
+Cell Id:5,Intensity = 28406.638672
+Cell Id:6,Intensity = 5474.042969
+Cell Id:7,Intensity = 8170.781738
+Cell Id:8,Intensity = 18723.050781
+
+ray ID: 51, Dfm.x = 0.034596, Dfm.y = -0.083523, Dfm.z = -0.125000
+Cell Id:0,Intensity = 18722.953125
+Cell Id:1,Intensity = 28406.542969
+Cell Id:2,Intensity = 61269.347656
+Cell Id:3,Intensity = 8170.764648
+Cell Id:4,Intensity = 10388.374023
+Cell Id:5,Intensity = 14843.348633
+Cell Id:6,Intensity = 5474.036621
+Cell Id:7,Intensity = 6591.062500
+Cell Id:8,Intensity = 8567.218750
+
+ray ID: 52, Dfm.x = -0.034596, Dfm.y = -0.083523, Dfm.z = -0.125000
+Cell Id:0,Intensity = 61269.226562
+Cell Id:1,Intensity = 28406.642578
+Cell Id:2,Intensity = 18723.050781
+Cell Id:3,Intensity = 14843.301758
+Cell Id:4,Intensity = 10388.376953
+Cell Id:5,Intensity = 8170.779785
+Cell Id:6,Intensity = 8567.194336
+Cell Id:7,Intensity = 6591.059570
+Cell Id:8,Intensity = 5474.041504
+
+ray ID: 53, Dfm.x = -0.083522, Dfm.y = -0.034596, Dfm.z = -0.125000
+Cell Id:0,Intensity = 61269.441406
+Cell Id:1,Intensity = 14843.361328
+Cell Id:2,Intensity = 8567.225586
+Cell Id:3,Intensity = 28406.507812
+Cell Id:4,Intensity = 10388.368164
+Cell Id:5,Intensity = 6591.059570
+Cell Id:6,Intensity = 18722.910156
+Cell Id:7,Intensity = 8170.753906
+Cell Id:8,Intensity = 5474.030762
+
+ray ID: 54, Dfm.x = -0.083523, Dfm.y = 0.034596, Dfm.z = -0.125000
+Cell Id:0,Intensity = 18723.085938
+Cell Id:1,Intensity = 8170.791504
+Cell Id:2,Intensity = 5474.048340
+Cell Id:3,Intensity = 28406.671875
+Cell Id:4,Intensity = 10388.384766
+Cell Id:5,Intensity = 6591.064941
+Cell Id:6,Intensity = 61269.144531
+Cell Id:7,Intensity = 14843.298828
+Cell Id:8,Intensity = 8567.193359
+
+ray ID: 55, Dfm.x = -0.034597, Dfm.y = 0.083523, Dfm.z = -0.125001
+Cell Id:0,Intensity = 8567.223633
+Cell Id:1,Intensity = 6591.063477
+Cell Id:2,Intensity = 5474.036133
+Cell Id:3,Intensity = 14843.355469
+Cell Id:4,Intensity = 10388.374023
+Cell Id:5,Intensity = 8170.762695
+Cell Id:6,Intensity = 61269.378906
+Cell Id:7,Intensity = 28406.533203
+Cell Id:8,Intensity = 18722.939453
+
+ray ID: 56, Dfm.x = -0.004266, Dfm.y = -0.010299, Dfm.z = 0.051777
+Cell Id:0,Intensity = 35077.683594
+Cell Id:1,Intensity = 25698.091797
+Cell Id:2,Intensity = 20667.441406
+Cell Id:3,Intensity = 18547.128906
+Cell Id:4,Intensity = 15197.032227
+Cell Id:5,Intensity = 13050.539062
+Cell Id:6,Intensity = 13107.629883
+Cell Id:7,Intensity = 11198.758789
+Cell Id:8,Intensity = 9889.367188
+
+ray ID: 57, Dfm.x = -0.010299, Dfm.y = -0.004266, Dfm.z = 0.051777
+Cell Id:0,Intensity = 35077.722656
+Cell Id:1,Intensity = 18547.146484
+Cell Id:2,Intensity = 13107.641602
+Cell Id:3,Intensity = 25698.072266
+Cell Id:4,Intensity = 15197.031250
+Cell Id:5,Intensity = 11198.757812
+Cell Id:6,Intensity = 20667.404297
+Cell Id:7,Intensity = 13050.526367
+Cell Id:8,Intensity = 9889.360352
+
+ray ID: 58, Dfm.x = -0.010299, Dfm.y = 0.004266, Dfm.z = 0.051777
+Cell Id:0,Intensity = 20667.449219
+Cell Id:1,Intensity = 13050.541016
+Cell Id:2,Intensity = 9889.367188
+Cell Id:3,Intensity = 25698.099609
+Cell Id:4,Intensity = 15197.034180
+Cell Id:5,Intensity = 11198.756836
+Cell Id:6,Intensity = 35077.679688
+Cell Id:7,Intensity = 18547.123047
+Cell Id:8,Intensity = 13107.624023
+
+ray ID: 59, Dfm.x = -0.004266, Dfm.y = 0.010299, Dfm.z = 0.051777
+Cell Id:0,Intensity = 13107.644531
+Cell Id:1,Intensity = 11198.758789
+Cell Id:2,Intensity = 9889.359375
+Cell Id:3,Intensity = 18547.150391
+Cell Id:4,Intensity = 15197.029297
+Cell Id:5,Intensity = 13050.522461
+Cell Id:6,Intensity = 35077.726562
+Cell Id:7,Intensity = 25698.066406
+Cell Id:8,Intensity = 20667.396484
+
+ray ID: 60, Dfm.x = 0.004266, Dfm.y = 0.010299, Dfm.z = 0.051777
+Cell Id:0,Intensity = 9889.367188
+Cell Id:1,Intensity = 11198.755859
+Cell Id:2,Intensity = 13107.619141
+Cell Id:3,Intensity = 13050.541992
+Cell Id:4,Intensity = 15197.032227
+Cell Id:5,Intensity = 18547.115234
+Cell Id:6,Intensity = 20667.455078
+Cell Id:7,Intensity = 25698.103516
+Cell Id:8,Intensity = 35077.675781
+
+ray ID: 61, Dfm.x = 0.010299, Dfm.y = 0.004266, Dfm.z = 0.051777
+Cell Id:0,Intensity = 9889.360352
+Cell Id:1,Intensity = 13050.523438
+Cell Id:2,Intensity = 20667.390625
+Cell Id:3,Intensity = 11198.761719
+Cell Id:4,Intensity = 15197.031250
+Cell Id:5,Intensity = 25698.062500
+Cell Id:6,Intensity = 13107.651367
+Cell Id:7,Intensity = 18547.158203
+Cell Id:8,Intensity = 35077.730469
+
+ray ID: 62, Dfm.x = 0.010299, Dfm.y = -0.004266, Dfm.z = 0.051777
+Cell Id:0,Intensity = 13107.622070
+Cell Id:1,Intensity = 18547.123047
+Cell Id:2,Intensity = 35077.695312
+Cell Id:3,Intensity = 11198.752930
+Cell Id:4,Intensity = 15197.030273
+Cell Id:5,Intensity = 25698.099609
+Cell Id:6,Intensity = 9889.362305
+Cell Id:7,Intensity = 13050.536133
+Cell Id:8,Intensity = 20667.443359
+
+ray ID: 63, Dfm.x = 0.004266, Dfm.y = -0.010299, Dfm.z = 0.051777
+Cell Id:0,Intensity = 20667.369141
+Cell Id:1,Intensity = 25698.056641
+Cell Id:2,Intensity = 35077.785156
+Cell Id:3,Intensity = 13050.507812
+Cell Id:4,Intensity = 15197.022461
+Cell Id:5,Intensity = 18547.167969
+Cell Id:6,Intensity = 9889.348633
+Cell Id:7,Intensity = 11198.752930
+Cell Id:8,Intensity = 13107.652344
+

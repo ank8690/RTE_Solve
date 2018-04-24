@@ -6,10 +6,10 @@
 #include<malloc.h>
 #include<math.h>
 #define sigma 5.67e-8 // Stefan-Boltzmann Constant
-main()
+int main()
 {
 	// Three files to write data for intensity, radiative flux at middle and bottom
-	FILE *fp1,*fp2,*fp3;
+	FILE *fp1,*fp2,*fp3,*fp4,*fp5;
 	int i,j,l,m,ni,nj,nt,np;
 	// Intensity for 50X50 Cells and nTheta = 10 and nPhi = 20, D_x is directional weight in x-direction, D_y is directional weight in x-direction, D_omega is solid angle in each direction 
 	double Int_old[50][50][10][20],Int_new[50][50][10][20],*D_x,*D_y,*D_omega,dx,dy,dtheta,dphi,theta,phi,rms,Sum_n;
@@ -33,12 +33,18 @@ main()
 	fp1=fopen("intensity_Abs_Emit.dat","w");
 	fp2=fopen("flux_Abs_Emit_mid.dat","w");
 	fp3=fopen("flux_Abs_Emit_bot.dat","w");
+	fp4=fopen("intensity_with_Dfm.dat","w");
+	fp5=fopen("flux_intensity_Dfm.dat","w");
 	if(fp1==NULL)
 	printf("Unable to open intensity file\n");
 	if(fp2==NULL)
 	printf("Unable to open flux Mid file\n");
 	if(fp3==NULL)
 	printf("Unable to open flux Bot file\n");
+	if(fp4==NULL)
+	printf("Unable to open intensity with dfm file\n");
+	if(fp5==NULL)
+	printf("Unable to open intensity with flux file\n");
 	dx=1.0/ni;
 	dy=1.0/nj;
 	dtheta=PI/(nt);
@@ -100,10 +106,15 @@ main()
 								{
 								 Nume=dy*(fabs(*(D_x+np*l+m)))*(Int_new[i-1][j][l][m])+
 										dx*(fabs(*(D_y+np*l+m)))*(Int_new[i][j-1][l][m]);
+								 printf("Nume:%lf\n",Nume);
 								 Source=kappa*sigma*pow(Tg,4)*dx*dy*(*(D_omega+np*l+m))/PI;
+								 printf("Source:%lf\n",Source);
 								 Deno=dy*(fabs(*(D_x+np*l+m)))+dx*(fabs(*(D_y+np*l+m)))+
 															kappa*dx*dy*(*(D_omega+np*l+m));
+
+								 printf("Deno:%lf\n",Deno);
 								 (Int_new[i][j][l][m])=(Nume+Source)/Deno;
+								printf("Intensity:%lf\n",Int_new[i][j][l][m]);
 								 	if(Int_new[i][j][l][m]<0)
 								 		Int_new[i][j][l][m]=0.0;
 								 }
@@ -114,9 +125,13 @@ main()
 						 	for(i=1;i<=ni;i++)
 								{
 								 Nume=dy*(fabs(*(D_x+np*l+m)))*(Int_new[i-1][j][l][m])+dx*(fabs(*(D_y+np*l+m)))*(Int_new[i][j+1][l][m]);
+								 printf("Nume:%lf\n",Nume);
 								 Source=kappa*sigma*pow(Tg,4)*dx*dy*(*(D_omega+np*l+m))/PI;
+								printf("Source:%lf\n",Source);
 								 Deno=dy*(fabs(*(D_x+np*l+m)))+dx*(fabs(*(D_y+np*l+m)))+kappa*dx*dy*(*(D_omega+np*l+m));
+								printf("Deno:%lf\n",Deno);
 								 (Int_new[i][j][l][m])=(Nume+Source)/Deno;
+								printf("Intensity:%lf\n",Int_new[i][j][l][m]);
 								 	if(Int_new[i][j][l][m]<0)
 								 		Int_new[i][j][l][m]=0.0;
 								 }
@@ -128,9 +143,13 @@ main()
 						 	for(i=ni;i>=1;i--)
 								{
 								 Nume=dy*(fabs(*(D_x+np*l+m)))*(Int_new[i+1][j][l][m])+dx*(fabs(*(D_y+np*l+m)))*(Int_new[i][j-1][l][m]);
+									printf("Nume:%lf\n",Nume);
 								 Source=kappa*sigma*pow(Tg,4)*dx*dy*(*(D_omega+np*l+m))/PI;
+								printf("Source:%lf\n",Source);
 								 Deno=dy*(fabs(*(D_x+np*l+m)))+dx*(fabs(*(D_y+np*l+m)))+kappa*dx*dy*(*(D_omega+np*l+m));
+								printf("Deno:%lf\n",Deno);
 								 (Int_new[i][j][l][m])=(Nume+Source)/Deno;
+								printf("Intensity:%lf\n",Int_new[i][j][l][m]);
 								 	if(Int_new[i][j][l][m]<0)
 								 		Int_new[i][j][l][m]=0.0;
 								 }
@@ -142,9 +161,13 @@ main()
 						 	for(i=ni;i>=1;i--)
 								{
 								 Nume=dy*(fabs(*(D_x+np*l+m)))*(Int_new[i+1][j][l][m])+dx*(fabs(*(D_y+np*l+m)))*(Int_new[i][j+1][l][m]);
+								printf("Nume:%lf\n",Nume);
 								 Source=kappa*sigma*pow(Tg,4)*dx*dy*(*(D_omega+np*l+m))/PI;
+								printf("Source:%lf\n",Source);
 								 Deno=dy*(fabs(*(D_x+np*l+m)))+dx*(fabs(*(D_y+np*l+m)))+kappa*dx*dy*(*(D_omega+np*l+m));
+								printf("Deno:%lf\n",Deno);
 								 (Int_new[i][j][l][m])=(Nume+Source)/Deno;
+								printf("Intensity:%lf\n",Int_new[i][j][l][m]);
 								 	if(Int_new[i][j][l][m]<0)
 								 		Int_new[i][j][l][m]=0.0;
 								 }
@@ -232,26 +255,40 @@ main()
 			}while(rms>1.0e-7);
 			
 		for(l=0;l<nt;l++)
+		{
+			for(m=0;m<np;m++)
+			{
+				for(j=1;j<=(nj);j++)
 				{
-			  	for(m=0;m<np;m++)
+					for(i=1;i<=(ni);i++)
 					{
-			  		for(j=1;j<=(nj);j++)
-						{
-						for(i=1;i<=(ni);i++)
-							fprintf(fp1,"%e\t%e\t%e\t%e\t%e\n",dx*(2.0*i-1.0)/2.0,dy*(2.0*j-1.0)/2.0,dtheta*(l+0.5),dphi*(m+0.5),Int_new[i][j][l][m]);
-						}
+						fprintf(fp1,"%e\t%e\t%e\t%e\t%e\n",dx*(2.0*i-1.0)/2.0,dy*(2.0*j-1.0)/2.0,
+													dtheta*(l+0.5),dphi*(m+0.5),Int_new[i][j][l][m]);
+
+						fprintf(fp4,"Dx = %lf, Dy = %lf, I = %e\n",*(D_x+np*l+m),*(D_y+np*l+m),Int_new[i][j][l][m]);
 					}
 				}
+			}
+		}
 		
 		for(i=1;i<(ni+1);i++)
-			{
-			 q_w=0.0;
+		{
+			fprintf(fp5,"for Cell ID: %d\n",i);
+			q_w=0.0;
 			for(l=0;l<nt;l++)
+			{
 				for(m=np/2;m<np;m++)
-					q_w=q_w+Int_new[i][1][l][m]*(*(D_y+np*l+m));
-				// here , we are non-dimesnionalizing the flux
+				{
+					float f_Int = Int_new[i][1][l][m];
+					float f_dfm = *(D_y+np*l+m);
+					q_w=q_w+f_Int*(f_dfm);
+					fprintf(fp5,"dfm.y = %lf,Intensity = %lf, heat flux = %lf\n",f_dfm,f_Int,q_w);
+				}
+			}	
+			fprintf(fp5,"total heat flux = %lf\n",q_w);
+			// here , we are non-dimesnionalizing the flux
 			flux_bot[i]=eps_l*(sigma*pow(Tl,4)-q_w)/(sigma*pow(Tg,4));
-			 }
+		}
 		for(i=1;i<(ni+1);i++)
 			{
 			 q_u=q_l=0.0;
@@ -273,5 +310,7 @@ main()
 	fclose(fp1);
 	fclose(fp2);
 	fclose(fp3);
+	fclose(fp4);
+	fclose(fp5);
 	return 0;
 }
