@@ -219,6 +219,8 @@ public:
 
 		void constructGridUsingCellAndFaces(long l_nbRays, Face *&pFaces, Cell *&pCells, long &l_nbCells, long &l_nbFaces);
 
+		void constructGridUsingCellAndFacesUnstructured(long l_nbRays, Face *&pFaces, Cell *&pCells, long &l_nbCells, long &l_nbFaces);
+
 		void updateIntensity();
 		
 		void printFaceAndCellInformation(Face *pFaces, Cell *pCells,long l_nbCells, long l_nbFaces );

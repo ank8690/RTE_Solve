@@ -54,8 +54,8 @@ float fEm_Bound_East = 1.0;
 float fEm_Bound_West = 1.0;
 float fEm_Bound_North = 1.0;
 float fEm_Bound_South = 1.0;
-int ni = 10;
-int nj = 10;
+int ni = 3;
+int nj = 1;
 float fEmiss_Bound = 0.1;
 // I am trying to construct the grid the way Chai has made using Fortran for RAT
 	// X is the cell-centre value at the location
@@ -151,8 +151,23 @@ void radiativeTransferEquation::updateIntensity()
 	float f_DMAX = -1000;
 	do
 	{
+		/*for(i = 0; i < l_nbFaces; ++i)
+		{
+			pFaces[i].m_l_nbRays = l_nbRays;
+			if(pFaces[i].m_d_vec_face_ray_Inten.size())
+			{
+				pFaces[i].m_d_vec_face_ray_Inten.clear();
+			}
+			pFaces[i].m_d_vec_face_ray_Inten.resize(l_nbRays);
+			for(long l_initRayCt = 0; l_initRayCt < inbRays; ++l_initRayCt)
+			{
+				pFaces[i].m_d_vec_face_ray_Inten[l_initRayCt] = 0.0;
+			}
+			pFaces[i].m_f_Area = (1/(float)ni);
+			pFaces[i].m_f_Temp = 0.0;
+		}*/
 		iNbIterations++;
-		//printf("Iteration No. : %d",iNbIterations);
+		printf("Iteration No. : %d\n",iNbIterations);
 		iConvergedRayCt = 0;
 		f_DMAX = -1000;
 		//float f_Sum_Old = 0.0;
@@ -160,6 +175,7 @@ void radiativeTransferEquation::updateIntensity()
 		for(iRayCt = 0; iRayCt < inbRays; ++iRayCt)
 		{
 			//printf("Iteration No. : %d, ray ID :%d ",iNbIterations,iRayCt);
+			printf("ray ID :%d\n ",iRayCt);
 			if(pbRayConverged[iRayCt])
 			{
 				iConvergedRayCt++;
@@ -196,8 +212,30 @@ void radiativeTransferEquation::updateIntensity()
 				long l_Cell_North = pCells[iCellCt].m_l_CellIndex_North;
 				long l_Cell_South = pCells[iCellCt].m_l_CellIndex_South;
 				float f_Ip_Old = pCells[iCellCt].m_d_vec_cell_ray_Inten[iRayCt];
-				
+				/*if(fAbsCoeff == 0.0)
+				{
+					f_Ip_Old = 0.0;
+				}*/
+				bool b_East = false;
+				bool b_West = false;
+				bool b_North = false;
+				bool b_South = false;
 				// Apply Boundary condition first
+				// In the coefficient matrix, contribution will always be from internal faces only
+
+				float A_e = (1/(float)nj);
+				float A_w = (1/(float)nj);
+				float A_n = (1/(float)ni);
+				float A_s = (1/(float)ni);
+				
+				float f_Vol_Cell = pCells[iCellCt].m_f_Vol;
+				float fP_V_Omega = f_Vol_Cell*fOmega; 
+				float f_Source = fP_V_Omega*fAbsCoeff*dSBConst*pow(pCells[iCellCt].m_f_Temp,4)/pi;
+
+				
+				// Now, I need to calculate a_p, the coefficient of I_p
+				
+				float f_a_P = fAbsCoeff*fP_V_Omega + A_e*fabs(fdp_e) + A_n*fabs(fdp_n);
 					
 				// Start from the east face
 				if(pFaces[lFaceIndex_East].m_b_IfBoundary)
@@ -230,12 +268,19 @@ void radiativeTransferEquation::updateIntensity()
 						}
 						pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iRayCt] = f_Rh_FirstTerm + f_SummationTerm;
 					}
+					else
+					{
+						pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+					}
 				}
 				else
 				{
+					//f_a_P += A_e*(fdp_e);
+					//b_East = true;
 					if(fdp_e > 0)
 					{
 						pFaces[lFaceIndex_East].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+						//b_East = true;
 					}
 					else
 					{
@@ -279,9 +324,17 @@ void radiativeTransferEquation::updateIntensity()
 						}
 						pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt] = f_Rh_FirstTerm + f_SummationTerm;
 					}
+					else
+					{
+						pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+					}
 				}
 				else
-				{
+				{	
+					/*if(!b_East)
+					{
+						f_a_P += A_w*(fdp_w);
+					}*/
 					if(fdp_w < 0)
 					{	
 						if(l_Cell_West != -1)
@@ -294,6 +347,7 @@ void radiativeTransferEquation::updateIntensity()
 					{
 						
 							pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+							b_West = true;
 					}
 				}
 				// North Face
@@ -327,12 +381,19 @@ void radiativeTransferEquation::updateIntensity()
 						}
 						pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt] = f_Rh_FirstTerm + f_SummationTerm;
 					}
+					else
+					{
+						pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+					}
 				}
 				else
 				{
+					//f_a_P += A_n*(fdp_n);
+					//b_North = true;
 					if(fdp_n > 0)
 					{
 							pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+							//b_North = true;
 					}
 					else
 					{
@@ -375,20 +436,30 @@ void radiativeTransferEquation::updateIntensity()
 						}
 						pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = f_Rh_FirstTerm + f_SummationTerm;
 					}
+					else
+					{
+							pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+							b_South = true;
+					}
 				}
 				else
 				{
+					/*if(!b_North)
+					{
+						f_a_P += A_s*(fdp_s);
+					}*/
 					if(fdp_s < 0)
 					{	
 						if(l_Cell_South != -1)
 						{
 							pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = 
-													-pCells[l_Cell_South].m_d_vec_cell_ray_Inten[iRayCt];
+												-pCells[l_Cell_South].m_d_vec_cell_ray_Inten[iRayCt];
 						}
 					}
 					else
 					{
 							pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt] = f_Ip_Old;
+							b_South = true;
 					}
 				}
 				
@@ -399,39 +470,87 @@ void radiativeTransferEquation::updateIntensity()
 				float I_w = pFaces[lFaceIndex_West].m_d_vec_face_ray_Inten[iRayCt];
 				float I_n = pFaces[lFaceIndex_North].m_d_vec_face_ray_Inten[iRayCt];
 				float I_s = pFaces[lFaceIndex_South].m_d_vec_face_ray_Inten[iRayCt];
-				float A_e = pFaces[lFaceIndex_East].m_f_Area;
-				float A_w = pFaces[lFaceIndex_West].m_f_Area;
-				float A_n = pFaces[lFaceIndex_North].m_f_Area;
-				float A_s = pFaces[lFaceIndex_South].m_f_Area;
-				
-				float f_Vol_Cell = pCells[iCellCt].m_f_Vol;
-				float fP_V_Omega = f_Vol_Cell*fOmega; 
-				float f_Source = fP_V_Omega*fAbsCoeff*dSBConst*pow(pCells[iCellCt].m_f_Temp,4)/pi;
+				if(I_e > 0.0)
+				{
+					b_East = true;
+				}
+				if(I_w > 0.0)
+				{
+					b_West = true;
+				}
+				if(I_n > 0.0)
+				{
+					b_North = true;
+				}
+				if(I_s > 0.0)
+				{
+					b_South = true;
+				}
+				//float A_e = pFaces[lFaceIndex_East].m_f_Area;
+				//float A_w = pFaces[lFaceIndex_West].m_f_Area;
+				//float A_n = pFaces[lFaceIndex_North].m_f_Area;
+				//float A_s = pFaces[lFaceIndex_South].m_f_Area;
 
 				
-				// Now, I need to calculate a_p, the coefficient of I_p
-				float f_a_P = fAbsCoeff*fP_V_Omega + A_e*fabs(fdp_e) + A_n*fabs(fdp_n);
-				float f_Num = f_Source;
+				/*if(b_East || b_West)
+				{
+					f_a_P += A_e*fabs(fdp_e);
+				}
+				if(b_West)
+				{
+					f_a_P += A_w*fabs(fdp_w);
+				}
+				if(b_North || b_South)
+				{
+					f_a_P += A_n*fabs(fdp_n);
+				}
+				if(b_South)
+				{
+					f_a_P += A_s*fabs(fdp_s);
+				}*/
+				float f_Num = f_Source -  ( (I_e*A_e*fabs(fdp_e)) + (I_w*A_w*fabs(fdp_w)) + 
+										(I_n*A_n*fabs(fdp_n)) + (I_s*A_s*fabs(fdp_s)) );
+				
+				/*float f_Num = f_Source;
+				bool b_NoIntensity = false;
 				if(I_e != f_Ip_Old)
 				{
-					f_Num -= I_e*A_e*fabs(fdp_e);
+					f_Num -= I_e*A_e*(fdp_e);
+					//f_a_P += A_e*fabs(fdp_e);
+					b_NoIntensity = true;
 				}
 				if(I_w != f_Ip_Old)
 				{
-					f_Num -= I_w*A_w*fabs(fdp_w);
+					f_Num -= I_w*A_w*(fdp_w);
+					//f_a_P += A_w*fabs(fdp_w);
+					b_NoIntensity = true;
 				}
 				if(I_n != f_Ip_Old)
 				{
-					f_Num -= I_n*A_n*fabs(fdp_n);
+					f_Num -= I_n*A_n*(fdp_n);
+					//f_a_P += A_n*fabs(fdp_n);
+					b_NoIntensity = true;
 				}
 				if(I_s != f_Ip_Old)
 				{
-					f_Num -= I_s*A_s*fabs(fdp_s);
-				}
+					f_Num -= I_s*A_s*(fdp_s);
+					//f_a_P += A_s*fabs(fdp_s);
+					b_NoIntensity = true;
+				}*/
 				//printf("Iteration No. : %d, ray ID :%d,iCellCt = %d, a_P = %lf\n",
 				//						iNbIterations,iRayCt,iCellCt,f_a_P);
 				//float f_w = 1.0; // relaxation factor
-				float f_Ip_New = f_Num/f_a_P;
+				float f_Ip_New = 0.0;
+				/*if(fabs(f_Num) <= 0.0)
+				{
+					f_Ip_New = 0.0;
+				}
+				else
+				{
+					f_Ip_New = f_Num/f_a_P;
+				}*/
+				f_Ip_New = f_Num/f_a_P;
+				printf("iCellCt = %d, f_Ip_New = %lf\n",iCellCt,f_Ip_New);
 				/*if(f_Ip_New < 0.0)
 				{
 					f_Ip_New = 0.0;
@@ -2074,19 +2193,13 @@ void radiativeTransferEquation::dotProduct(Point a, Point b, float &dp)
 	dp = 0.0;
 	dp = (a.x*b.x) +  (a.y*b.y) + (a.z*b.z);
 }
-
 // ************************************************************************* //
-void radiativeTransferEquation::constructGridUsingCellAndFaces(long l_nbRays, Face *&pFaces, 
-															   Cell *&pCells, long &l_nbCells,
-															   long &l_nbFaces)
+void radiativeTransferEquation::constructGridUsingCellAndFacesUnstructured(long l_nbRays, Face *&pFaces, Cell *&pCells, long &l_nbCells, long &l_nbFaces)
 {
-
-	// first assign face parameters
-	// Get to know the total number of faces
 	long i = 0;
 	long j = 0;
-	long l_RayCt = 0;
-	l_nbFaces = (ni*(ni+1)) + (nj*(nj+1));
+	//long l_RayCt = 0;
+	l_nbFaces = (ni*3) + 1;
 
 	l_nbCells = ni*nj;
 	pCells = new Cell[l_nbCells];
@@ -2144,12 +2257,91 @@ void radiativeTransferEquation::constructGridUsingCellAndFaces(long l_nbRays, Fa
 	}
 	
 	pFaces = new Face[l_nbFaces];	
-	long l_faceCount = 0; 
-	for(i = 0; i < ni; ++i)
+	//long l_faceCount = 0;
+}
+// ************************************************************************* //
+void radiativeTransferEquation::constructGridUsingCellAndFaces(long l_nbRays, Face *&pFaces, 
+															   Cell *&pCells, long &l_nbCells,
+															   long &l_nbFaces)
+{
+
+	// first assign face parameters
+	// Get to know the total number of faces
+	long i = 0;
+	long j = 0;
+	long l_RayCt = 0;
+	if(ni == nj)
 	{
-		for(j = 0; j < ni+1; ++j)
+		l_nbFaces = (ni*(ni+1)) + (nj*(nj+1));
+	}
+	else
+	{
+		l_nbFaces = (ni*3) + 1;
+	}
+	l_nbCells = ni*nj;
+	pCells = new Cell[l_nbCells];
+	long l_CellCount = 0;
+
+	// First to know which cells are adjecent to particular cell
+	for(j = 0; j < nj; ++j)
+	{
+		for(i = 0; i < ni; ++i)
 		{
-			if(j ==0 || j == ni)
+			/*if(i == 0 || i == ni -1) // this is boundary
+			{
+				// here west and south cells will be -1
+				//pCells[l_CellCount].m_l_CellIndex_West = -1;
+				pCells[l_CellCount].m_l_CellIndex_South = -1;
+			}
+			else
+			{*/
+				//pCells[l_CellCount].m_l_CellIndex_West = l_CellCount-1;
+				if( j == 0)
+				{
+					pCells[l_CellCount].m_l_CellIndex_South = -1;
+				}
+				else
+				{
+					pCells[l_CellCount].m_l_CellIndex_South = l_CellCount - ni;
+				}
+			/*}*/
+			if(i != ni -1)
+			{
+				pCells[l_CellCount].m_l_CellIndex_East = l_CellCount + 1;
+			}
+			else
+			{
+				pCells[l_CellCount].m_l_CellIndex_East = -1;				
+			}
+			if(i ==0)
+			{
+				pCells[l_CellCount].m_l_CellIndex_West = -1;
+			}
+			else
+			{
+				pCells[l_CellCount].m_l_CellIndex_West = l_CellCount-1;
+			}
+			if(j != nj - 1)
+			{
+				pCells[l_CellCount].m_l_CellIndex_North = (ni*(j+1)) + i;
+			}
+			else
+			{
+				pCells[l_CellCount].m_l_CellIndex_North = -1;
+			}
+			l_CellCount++;
+		}
+	}
+	
+	pFaces = new Face[l_nbFaces];	
+	long l_faceCount = 0; 
+	
+
+	for(j = 0; j < nj; ++j)
+	{
+		for(i = 0; i < ni+1; ++i)
+		{
+			if(i ==0 || i == ni)
 			{
 				pFaces[l_faceCount].m_b_IfBoundary = true;
 				pFaces[l_faceCount].m_f_Temp = 0.0;
@@ -2162,11 +2354,11 @@ void radiativeTransferEquation::constructGridUsingCellAndFaces(long l_nbRays, Fa
 		}
 	}
 
-	for(j = 0; j < nj; ++j)
+	for(i = 0; i < ni; ++i)
 	{
-		for(i = 0; i < nj+1; ++i)
+		for(j = 0; j < nj+1; ++j)
 		{
-			if(i ==0 || i == nj)
+			if(j ==0 || j == nj)
 			{
 				pFaces[l_faceCount].m_b_IfBoundary = true;
 				pFaces[l_faceCount].m_f_Temp = 0.0;
@@ -2222,8 +2414,16 @@ void radiativeTransferEquation::constructGridUsingCellAndFaces(long l_nbRays, Fa
 				pCells[l_CellCount].m_l_FaceIndex_East 	= l_faceCount+1;
 				if(j == 0)
 				{
-					pCells[l_CellCount].m_l_FaceIndex_South 	= l_nbFaces/2;
-					pCells[l_CellCount].m_l_FaceIndex_North 	= (l_nbFaces/2) + 1;
+					if(ni == nj)
+					{
+						pCells[l_CellCount].m_l_FaceIndex_South 	= l_nbFaces/2;
+						pCells[l_CellCount].m_l_FaceIndex_North 	= (l_nbFaces/2) + 1;
+					}
+					else
+					{
+						pCells[l_CellCount].m_l_FaceIndex_South 	= (l_nbFaces/2) - 1;
+						pCells[l_CellCount].m_l_FaceIndex_North 	= (l_nbFaces/2);
+					}
 				}
 				else
 				{
@@ -2235,8 +2435,8 @@ void radiativeTransferEquation::constructGridUsingCellAndFaces(long l_nbRays, Fa
 			{
 				pCells[l_CellCount].m_l_FaceIndex_West 		= pCells[l_CellCount - 1].m_l_FaceIndex_East;
 				pCells[l_CellCount].m_l_FaceIndex_East 		= pCells[l_CellCount - 1].m_l_FaceIndex_East+1;
-				pCells[l_CellCount].m_l_FaceIndex_South 	= pCells[l_CellCount - 1].m_l_FaceIndex_South + ni + 1;
-				pCells[l_CellCount].m_l_FaceIndex_North 	= pCells[l_CellCount - 1].m_l_FaceIndex_North + ni + 1;
+				pCells[l_CellCount].m_l_FaceIndex_South 	= pCells[l_CellCount - 1].m_l_FaceIndex_South + nj + 1;
+				pCells[l_CellCount].m_l_FaceIndex_North 	= pCells[l_CellCount - 1].m_l_FaceIndex_North + nj + 1;
 				
 			}	
 			pCells[l_CellCount].m_l_nbRays = l_nbRays;
